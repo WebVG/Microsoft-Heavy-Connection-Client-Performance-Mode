@@ -172,7 +172,7 @@ function Invoke-HttpWithRetry {
 
             $retryDelaySec = $BaseDelaySeconds * [math]::Pow(2, ($attempt - 1))
             $retryDelaySec = [math]::Min($retryDelaySec, 60)
-            Write-PerfLog "NetBoost: exception on attempt $attempt for $Uri: $($_.Exception.Message). Retrying in ${retryDelaySec}s..." 'Warn'
+            Write-PerfLog "NetBoost: exception on attempt $attempt for $Uri $($_.Exception.Message). Retrying in ${retryDelaySec}s..." 'Warn'
             Start-Sleep -Seconds $retryDelaySec
         }
     }
@@ -241,7 +241,7 @@ function Set-PowerPlanByGuid {
             Write-PerfLog "Switched power plan to $Guid"
         }
     } catch {
-        Write-PerfLog -Message "Failed to switch power plan to $Guid: $($_.Exception.Message)" -Level 'Error'
+        Write-PerfLog -Message "Failed to switch power plan to $Guid $($_.Exception.Message)" -Level 'Error'
     }
 }
 
@@ -390,7 +390,7 @@ function Stop-NonCriticalProcesses {
                 }
                 if (-not $p.HasExited) { $p.Kill() }
             } catch {
-                Write-PerfLog -Message "Failed to stop $name: $($_.Exception.Message)" -Level 'Warn'
+                Write-PerfLog -Message "Failed to stop $name $($_.Exception.Message)" -Level 'Warn'
             }
         }
     }
