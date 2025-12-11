@@ -241,7 +241,7 @@ function Set-PowerPlanByGuid {
             Write-PerfLog "Switched power plan to $Guid"
         }
     } catch {
-        Write-PerfLog "Failed to switch power plan to $Guid: $($_.Exception.Message)" 'Error'
+        Write-PerfLog -Message "Failed to switch power plan to $Guid: $($_.Exception.Message)" -Level 'Error'
     }
 }
 
@@ -390,7 +390,7 @@ function Stop-NonCriticalProcesses {
                 }
                 if (-not $p.HasExited) { $p.Kill() }
             } catch {
-                Write-PerfLog "Failed to stop $name: $($_.Exception.Message)" 'Warn'
+                Write-PerfLog -Message "Failed to stop $name: $($_.Exception.Message)" -Level 'Warn'
             }
         }
     }
